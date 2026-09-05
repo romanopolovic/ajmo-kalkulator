@@ -1,4 +1,4 @@
-export type PricingModel = 'TIERED' | 'PER_HOUR' | 'FIXED' | 'CUSTOM';
+export type PricingModel = "TIERED" | "PER_HOUR" | "FIXED" | "CUSTOM";
 
 export interface Tier {
   min: number;
@@ -6,7 +6,7 @@ export interface Tier {
   price: number;
 }
 
-export type SubServiceType = 'PER_HOUR' | 'PER_UNIT' | 'FIXED';
+export type SubServiceType = "PER_HOUR" | "PER_UNIT" | "FIXED";
 
 export interface SubServiceDef {
   id: string;
@@ -43,7 +43,7 @@ export interface JobPhase {
   workers: number;
   quantity: number;
   selectedSubServices: Record<string, boolean>;
-  
+
   // Overrides
   isManualHours: boolean;
   manualHoursOverride?: number;
@@ -74,12 +74,18 @@ export interface JobEstimate {
   startTime: string | null;
   additionalExpenses: AdditionalExpense[];
   discountValue: number;
-  discountType: 'percentage' | 'fixed';
-  priority: 'standard' | 'urgent' | 'same_day' | 'weekend';
+  discountType: "percentage" | "fixed";
+  priority: "standard" | "urgent" | "same_day" | "weekend";
   clientName: string;
   clientPhone: string;
   clientNotes: string;
-  status: 'draft' | 'pending' | 'confirmed' | 'in_progress' | 'completed' | 'cancelled';
+  status:
+    | "draft"
+    | "pending"
+    | "confirmed"
+    | "in_progress"
+    | "completed"
+    | "cancelled";
   createdAt: string;
 }
 

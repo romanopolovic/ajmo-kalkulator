@@ -1,8 +1,8 @@
-import React from 'react';
-import { useCalculatorStore } from '../../store/useCalculatorStore';
-import { AnimatePresence } from 'framer-motion';
-import PhaseEditor from './PhaseEditor';
-import { JobPhase } from '../../types';
+import React from "react";
+import { useCalculatorStore } from "../../store/useCalculatorStore";
+import { AnimatePresence } from "framer-motion";
+import PhaseEditor from "./PhaseEditor";
+import { JobPhase } from "../../types";
 
 export default function PhaseList() {
   const { estimate } = useCalculatorStore();
@@ -13,8 +13,15 @@ export default function PhaseList() {
   return (
     <div className="space-y-6 mt-8">
       <div>
-        <h3 className="text-lg font-bold">2. Detalji posla ({phases.length})</h3>
-        <p className="text-sm text-muted-foreground">Konfigurirajte odabrane usluge.</p>
+        <h3 className="text-[17px] font-semibold tracking-wide flex items-center justify-between">
+          <span>2. Detalji posla</span>
+          <span className="bg-yellow-500 text-black text-xs px-2 py-0.5 rounded-full font-bold">
+            {phases.length}
+          </span>
+        </h3>
+        <p className="text-[13px] text-gray-400 mt-1">
+          Konfigurirajte odabrane usluge.
+        </p>
       </div>
 
       <AnimatePresence>

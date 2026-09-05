@@ -1,7 +1,9 @@
 {
-  "name": "Radna Snaga Karlovac",
-  "description": "Napredni interaktivni kalkulator poslova, generator ponuda i sažetaka posla za građevinske i terenske radove.",
-  "requestFramePermissions": [],
+  "name": "AJMO",
+  "description": "AJMO – Fizički poslovi i usluge u Karlovcu i okolici. Interaktivni kalkulator poslova, generator ponuda i sažetaka posla za terenske radove.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
   ]

@@ -125,6 +125,12 @@ const PhaseEditor: React.FC<PhaseEditorProps> = ({ phase, index }) => {
                           <div className="w-2.5 h-2.5 bg-black rounded-sm" />
                         )}
                       </div>
+                      <input
+                        type="checkbox"
+                        className="hidden"
+                        checked={!!phase.selectedSubServices[sub.id]}
+                        onChange={() => toggleSubService(phase.id, sub.id)}
+                      />
                       <span className="text-[13px] font-medium text-white">
                         {sub.name}
                       </span>

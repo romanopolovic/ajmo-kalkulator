@@ -24,16 +24,10 @@ export default defineConfig(() => {
           scope: '/',
           icons: [
             {
-              src: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2692.png',
-              sizes: '192x192',
-              type: 'image/png',
-              purpose: 'any maskable'
-            },
-            {
-              src: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2692.png',
+              src: '/icon.svg',
               sizes: '512x512',
-              type: 'image/png',
-              purpose: 'any'
+              type: 'image/svg+xml',
+              purpose: 'any maskable'
             }
           ]
         },

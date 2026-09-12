@@ -28,6 +28,10 @@ interface CalculatorState {
   saveCurrentEstimate: () => void;
   loadEstimate: (id: string) => void;
   deleteSavedEstimate: (id: string) => void;
+  updateSavedEstimateStatus: (
+    id: string,
+    status: JobEstimate["status"],
+  ) => void;
 }
 
 const generateId = () =>
@@ -179,6 +183,12 @@ export const useCalculatorStore = create<CalculatorState>()(
       deleteSavedEstimate: (id) =>
         set((state) => ({
           savedEstimates: state.savedEstimates.filter((e) => e.id !== id),
+        })),
+      updateSavedEstimateStatus: (id, status) =>
+        set((state) => ({
+          savedEstimates: state.savedEstimates.map((e) =>
+            e.id === id ? { ...e, status } : e,
+          ),
         })),
     }),
     {

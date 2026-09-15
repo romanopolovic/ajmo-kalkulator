@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useCalculatorStore } from "../../store/useCalculatorStore";
+import { useClientStore } from "../../store/useClientStore";
 import { Card } from "../ui/card";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
@@ -25,6 +26,8 @@ export default function LocationAndDetails() {
     addExpense,
     removeExpense,
   } = useCalculatorStore();
+  
+  const clients = useClientStore(state => state.clients);
   const [newExpName, setNewExpName] = useState("");
   const [newExpAmount, setNewExpAmount] = useState("");
   const [isLocating, setIsLocating] = useState(false);
@@ -66,16 +69,20 @@ export default function LocationAndDetails() {
   };
 
   return (
-    <div className="space-y-6 mt-12">
-      <div>
-        <h3 className="text-lg font-bold">3. Lokacija, Troškovi i Detalji</h3>
-        <p className="text-sm text-muted-foreground">
-          Dodatne opcije za točan izračun.
-        </p>
+    <div className="space-y-6">
+      <div className="flex justify-between items-end">
+        <div>
+          <h3 className="text-xl font-bold tracking-tight text-white flex items-center gap-3">
+            Lokacija, Klijent i Troškovi
+          </h3>
+          <p className="text-[14px] text-gray-400 mt-1 font-medium">
+            Dodatne opcije za točan izračun i evidenciju posla
+          </p>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="p-5 border-white/5 bg-[#1c1c1e] rounded-3xl">
+        <Card className="p-6 border-white/10 bg-[#1c1c1e]/40 backdrop-blur-2xl rounded-[32px] shadow-[0_4px_24px_rgba(0,0,0,0.2)]">
           <h4 className="font-semibold tracking-wide flex items-center gap-2 mb-4 text-white">
             <MapPin className="w-5 h-5 text-yellow-500" /> Lokacija
           </h4>
@@ -152,7 +159,7 @@ export default function LocationAndDetails() {
           </div>
         </Card>
 
-        <Card className="p-5 border-white/5 bg-[#1c1c1e] rounded-3xl">
+        <Card className="p-6 border-white/10 bg-[#1c1c1e]/40 backdrop-blur-2xl rounded-[32px] shadow-[0_4px_24px_rgba(0,0,0,0.2)]">
           <h4 className="font-semibold tracking-wide flex items-center gap-2 mb-4 text-white">
             <Tag className="w-5 h-5 text-yellow-500" /> Dodatno
           </h4>
@@ -257,7 +264,7 @@ export default function LocationAndDetails() {
           </div>
         </Card>
 
-        <Card className="p-5 border-white/5 bg-[#1c1c1e] rounded-3xl md:col-span-2">
+        <Card className="p-6 border-white/10 bg-[#1c1c1e]/40 backdrop-blur-2xl rounded-[32px] shadow-[0_4px_24px_rgba(0,0,0,0.2)] md:col-span-2">
           <div className="flex flex-col gap-4 mb-5 pb-5 border-b border-white/5">
             <h4 className="font-semibold tracking-wide text-white">
               Podaci o klijentu (Opcionalno)
@@ -285,6 +292,32 @@ export default function LocationAndDetails() {
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            {clients.length > 0 && (
+              <div className="md:col-span-2 mb-2">
+                <Label className="mb-1 block text-gray-400">Odaberi postojećeg klijenta</Label>
+                <select
+                  className="flex h-12 w-full rounded-xl border border-white/10 bg-black/50 px-3 text-sm focus-visible:ring-2 focus-visible:ring-yellow-500 text-white appearance-none"
+                  onChange={(e) => {
+                    const client = clients.find(c => c.id === e.target.value);
+                    if (client) {
+                      updateEstimate({
+                        clientName: client.name,
+                        clientPhone: client.phone,
+                        clientNotes: client.notes,
+                      });
+                      if (client.address) {
+                        updateLocation({ address: client.address });
+                      }
+                    }
+                  }}
+                >
+                  <option value="" className="bg-[#1c1c1e] text-white">-- Novi Klijent --</option>
+                  {clients.map(c => (
+                    <option key={c.id} value={c.id} className="bg-[#1c1c1e] text-white">{c.name} {c.phone ? `(${c.phone})` : ""}</option>
+                  ))}
+                </select>
+              </div>
+            )}
             <div>
               <Label className="mb-1 block text-gray-400">Ime i Prezime</Label>
               <Input

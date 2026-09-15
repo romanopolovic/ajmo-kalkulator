@@ -35,7 +35,7 @@ const PhaseEditor: React.FC<PhaseEditorProps> = ({ phase, index }) => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95 }}
     >
-      <Card className="p-5 border-white/5 bg-[#1c1c1e] rounded-3xl relative overflow-hidden">
+      <Card className="p-6 border-white/10 bg-[#1c1c1e]/40 backdrop-blur-2xl rounded-[32px] relative overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-500 to-yellow-600" />
 
         <div className="flex justify-between items-start mb-6">
@@ -76,7 +76,7 @@ const PhaseEditor: React.FC<PhaseEditorProps> = ({ phase, index }) => {
                       quantity: parseFloat(e.target.value) || 0,
                     })
                   }
-                  className="bg-black/50 border-white/10 h-12 rounded-xl text-white text-lg font-semibold"
+                  className="bg-[#1c1c1e]/50 border-white/10 h-12 rounded-[16px] text-white text-[16px] font-semibold focus:border-yellow-500/50 focus:ring-1 focus:ring-yellow-500/50"
                 />
               </div>
             )}
@@ -85,7 +85,7 @@ const PhaseEditor: React.FC<PhaseEditorProps> = ({ phase, index }) => {
                 <Users className="w-4 h-4" /> Broj radnika
               </Label>
               <select
-                className="flex h-12 w-full rounded-xl border border-white/10 bg-black/50 px-3 py-2 font-semibold text-white focus-visible:ring-2 focus-visible:ring-yellow-500"
+                className="flex h-12 w-full rounded-[16px] border border-white/10 bg-[#1c1c1e]/50 px-4 py-2 font-semibold text-white focus-visible:outline-none focus-visible:border-yellow-500/50 focus-visible:ring-1 focus-visible:ring-yellow-500/50 appearance-none"
                 value={phase.workers}
                 onChange={(e) =>
                   updatePhase(phase.id, { workers: parseInt(e.target.value) })

@@ -11,24 +11,28 @@ export default function PhaseList() {
   if (phases.length === 0) return null;
 
   return (
-    <div className="space-y-6 mt-8">
-      <div>
-        <h3 className="text-[17px] font-semibold tracking-wide flex items-center justify-between">
-          <span>2. Detalji posla</span>
-          <span className="bg-yellow-500 text-black text-xs px-2 py-0.5 rounded-full font-bold">
-            {phases.length}
-          </span>
-        </h3>
-        <p className="text-[13px] text-gray-400 mt-1">
-          Konfigurirajte odabrane usluge.
-        </p>
+    <div className="space-y-6">
+      <div className="flex justify-between items-end">
+        <div>
+          <h3 className="text-xl font-bold tracking-tight text-white flex items-center gap-3">
+            Detalji Usluga
+            <span className="bg-yellow-500 text-black text-[12px] px-2.5 py-0.5 rounded-full font-bold">
+              {phases.length}
+            </span>
+          </h3>
+          <p className="text-[14px] text-gray-400 mt-1 font-medium">
+            Konfigurirajte količinu, radnike i dodatke za svaku uslugu
+          </p>
+        </div>
       </div>
 
-      <AnimatePresence>
-        {phases.map((phase, index) => (
-          <PhaseEditor key={phase.id} phase={phase} index={index} />
-        ))}
-      </AnimatePresence>
+      <div className="space-y-4">
+        <AnimatePresence>
+          {phases.map((phase, index) => (
+            <PhaseEditor key={phase.id} phase={phase} index={index} />
+          ))}
+        </AnimatePresence>
+      </div>
     </div>
   );
 }

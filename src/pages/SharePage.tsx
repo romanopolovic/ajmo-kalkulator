@@ -8,7 +8,14 @@ import { Card } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import { formatCurrency } from "../lib/utils";
 import { SERVICES } from "../data/services";
-import { MapPin, Calendar, Users, Clock, ArrowLeft } from "lucide-react";
+import {
+  MapPin,
+  Calendar,
+  Users,
+  Clock,
+  ArrowLeft,
+  Download,
+} from "lucide-react";
 
 export default function SharePage() {
   const { id } = useParams();
@@ -46,9 +53,23 @@ export default function SharePage() {
             <ArrowLeft className="w-4 h-4 mr-2" /> Natrag na kalkulator
           </Link>
         </Button>
-        <h2 className="text-3xl font-bold uppercase tracking-tight text-white mb-2">
-          Detalji Posla
-        </h2>
+        <div className="flex justify-between items-start sm:items-center flex-col sm:flex-row gap-4 mb-2">
+          <h2 className="text-3xl font-bold uppercase tracking-tight text-white m-0">
+            Detalji Posla
+          </h2>
+          <Button
+            variant="outline"
+            className="rounded-[16px] border-white/10 bg-[#1c1c1e] hover:bg-[#1c1c1e]/80 text-white"
+            onClick={() => {
+              import("../lib/pdf").then(({ generateEstimatePDF }) => {
+                generateEstimatePDF(estimate);
+              });
+            }}
+          >
+            <Download className="w-4 h-4 mr-2 text-yellow-500" />
+            Preuzmi PDF
+          </Button>
+        </div>
         <p className="text-muted-foreground font-mono bg-dark inline-block px-3 py-1 rounded">
           #{estimate.id}
         </p>

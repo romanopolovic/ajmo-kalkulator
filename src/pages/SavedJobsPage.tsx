@@ -90,7 +90,7 @@ export default function SavedJobsPage() {
       </div>
 
       {filteredJobs.length === 0 ? (
-        <Card className="p-12 border-white/5 bg-[#1c1c1e] text-center rounded-3xl">
+        <Card className="p-12 border-white/10 bg-[#1c1c1e]/40 backdrop-blur-2xl text-center rounded-[32px] shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
           <h3 className="text-lg font-semibold mb-2">
             Nema spremljenih poslova
           </h3>
@@ -113,10 +113,10 @@ export default function SavedJobsPage() {
               <Card
                 key={job.id}
                 className={cn(
-                  "p-5 border-white/5 rounded-3xl transition-colors",
+                  "p-6 border-white/10 rounded-[32px] transition-all backdrop-blur-2xl shadow-[0_4px_24px_rgba(0,0,0,0.2)]",
                   isCompleted
-                    ? "bg-[#1c1c1e]/50 opacity-80"
-                    : "bg-[#1c1c1e] hover:bg-[#2c2c2e]",
+                    ? "bg-[#1c1c1e]/20 opacity-70"
+                    : "bg-[#1c1c1e]/40 hover:bg-[#1c1c1e]/60 hover:shadow-[0_8px_32px_rgba(0,0,0,0.3)] hover:-translate-y-1",
                 )}
               >
                 <div className="flex justify-between items-start mb-4">
